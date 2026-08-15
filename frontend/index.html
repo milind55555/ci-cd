@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zidd 2.0 | CI-CD Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Top Bar -->
+    <header>
+        <div class="header-container">
+            <div class="branding">
+                <div class="logo-icon">Z</div>
+                <h1>Zidd 2.0 CI/CD</h1>
+                <span>Session Dashboard</span>
+            </div>
+            
+            <div class="session-badge">
+                <span class="session-label">Active Session:</span>
+                <span class="session-val">zidd_v2.0_cicd</span>
+                <div class="pulse-dot"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Layout Grid -->
+    <main>
+        
+        <!-- Left Panel: Pipeline Visualizer (Static guide with success states) -->
+        <aside class="glass-card">
+            <div class="card-title">
+                <div class="card-title-icon-group">
+                    <!-- Workflow/Branch Icon SVG -->
+                    <svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.25z"/>
+                    </svg>
+                    <span>CI/CD Pipeline Flow- Jadeja Zidd 2</span>
+                </div>
+                <div class="live-indicator">
+                    <div class="pulse-dot"></div>
+                    <span>Passing</span>
+                </div>
+            </div>
+            
+            <div class="pipeline-list">
+                
+                <!-- Step 1: Code Checkout -->
+                <div class="pipeline-step success">
+                    <div class="step-indicator">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    </div>
+                    <div class="step-info">
+                        <div class="step-name">1. Code Checkout</div>
+                        <div class="step-desc">Retrieve latest master branch code</div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Gitleaks Scan -->
+                <div class="pipeline-step success">
+                    <div class="step-indicator">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    </div>
+                    <div class="step-info">
+                        <div class="step-name">2. Gitleaks Scan</div>
+                        <div class="step-desc">DevSecOps credential scan check</div>
+                    </div>
+                </div>
+
+                <!-- Step 3: ESLint Linter -->
+                <div class="pipeline-step success">
+                    <div class="step-indicator">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    </div>
+                    <div class="step-info">
+                        <div class="step-name">3. ESLint Code Analysis</div>
+                        <div class="step-desc">Backend syntax check & quality validation</div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Docker Build -->
+                <div class="pipeline-step success">
+                    <div class="step-indicator">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    </div>
+                    <div class="step-info">
+                        <div class="step-name">4. Docker Image Build</div>
+                        <div class="step-desc">Containerize frontend & backend builds</div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Push to Hub -->
+                <div class="pipeline-step success">
+                    <div class="step-indicator">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    </div>
+                    <div class="step-info">
+                        <div class="step-name">5. Docker Registry Push</div>
+                        <div class="step-desc">Publish images to Docker Hub registry</div>
+                    </div>
+                </div>
+
+                <!-- Step 6: SSH Deploy -->
+                <div class="pipeline-step success">
+                    <div class="step-indicator">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    </div>
+                    <div class="step-info">
+                        <div class="step-name">6. SSH Server Deploy</div>
+                        <div class="step-desc">Remote command script run on staging VM</div>
+                    </div>
+                </div>
+
+                <!-- Step 7: Verification -->
+                <div class="pipeline-step success">
+                    <div class="step-indicator">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    </div>
+                    <div class="step-info">
+                        <div class="step-name">7. Live Verification</div>
+                        <div class="step-desc">Confirm live endpoint is responding</div>
+                    </div>
+                </div>
+
+            </div>
+        </aside>
+
+        <!-- Right Panel: Grid of Environment & Services -->
+        <div class="dashboard-grid">
+            
+            <!-- Card: Frontend Service Metrics -->
+            <div class="glass-card">
+                <div class="card-title">
+                    <div class="card-title-icon-group">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        <span>Frontend Web Service- jadeja zidd</span>
+                    </div>
+                    <div class="live-indicator">
+                        <div class="pulse-dot"></div>
+                        <span>Active</span>
+                    </div>
+                </div>
+                
+                <div class="stat-group">
+                    <div class="stat-row">
+                        <span class="stat-label">Web Server:</span>
+                        <span class="stat-value">Nginx (Alpine)</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Service Status:</span>
+                        <span class="stat-value success">Healthy (200)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card: Backend API Service Monitor -->
+            <div class="glass-card">
+                <div class="card-title">
+                    <div class="card-title-icon-group">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                        <span>Backend Express API</span>
+                    </div>
+                    <div class="live-indicator" id="backend-health-indicator">
+                        <div class="pulse-dot"></div>
+                        <span id="backend-health-text">Connecting...</span>
+                    </div>
+                </div>
+                
+                <div class="stat-group">
+                    <div class="stat-row">
+                        <span class="stat-label">Runtime environment:</span>
+                        <span class="stat-value">Node v20.x</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">API Status:</span>
+                        <span class="stat-value" id="api-status-val">Checking...</span>
+                    </div>
+                </div>
+                
+                <!-- Live response display -->
+                <div class="terminal-block" id="message-container">
+                    <span id="message">Connecting to api message endpoint...</span>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Zidd 2.0 CI/CD Hands-on Session. Dockerized Container deployment with GitHub Actions.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
