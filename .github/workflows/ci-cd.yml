@@ -1,0 +1,66 @@
+name: CI-CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  ci:
+    name: Continuous Integration (CI)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Gitleaks Scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITLEAKS_ENABLE_COMMENTS: true
+
+    # 🧹 LINT BACKEND
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Backend Dependencies
+        run: |
+          cd backend
+          npm install
+
+      - name: Run Lint
+        run: |
+          cd backend
+          npm run lint
+
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Frontend Image
+        run: |
+          docker build \
+          -t ${{ secrets.DOCKER_USERNAME }}/frontend:latest \
+          ./frontend
+
+      - name: Push Frontend Image
+        run: |
+          docker push \
+          ${{ secrets.DOCKER_USERNAME }}/frontend:latest
+
+      - name: Build Backend Image
+        run: |
+          docker build \
+          -t ${{ secrets.DOCKER_USERNAME }}/backend:latest \
+          ./backend
+
+      - name: Push Backend Image
+        run: |
+          docker push \
+          ${{ secrets.DOCKER_USERNAME }}/backend:latest
