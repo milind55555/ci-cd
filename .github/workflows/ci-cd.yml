@@ -81,8 +81,8 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            docker pull jadeja123/frontend:latest
-            docker pull jadeja123/backend:latest
+            docker pull milind1122/frontend:latest
+            docker pull milind1122/backend:latest
 
             docker stop frontend || true
             docker rm frontend || true
